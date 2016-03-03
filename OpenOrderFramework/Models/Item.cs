@@ -21,8 +21,8 @@ namespace OpenOrderFramework.Models
         [ScaffoldColumn(false)]
         public int ID { get; set; }
 
-        [DisplayName("Catagorie")]
-        public int CatagorieId { get; set; }
+        [DisplayName("Category")]
+        public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "An Item Name is required")]
         [StringLength(160)]
@@ -69,7 +69,7 @@ namespace OpenOrderFramework.Models
         [StringLength(1024)]
         public string ItemPictureUrl { get; set; }
 
-        public virtual Catagorie Catagorie { get; set; }
+        public virtual Category Category { get; set; }
         public virtual List<OrderDetail> OrderDetails { get; set; }
     }
 }

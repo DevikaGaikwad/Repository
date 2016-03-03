@@ -16,19 +16,19 @@ namespace OpenOrderFramework.Controllers
 
         public ActionResult Index()
         {
-            var catagories = storeDB.Catagories.ToList();
+            var Categories = storeDB.Categories.ToList();
 
-            return View(catagories);
+            return View(Categories);
         }
 
         //
         // GET: /Store/Browse?genre=Disco
 
-        public ActionResult Browse(string catagorie)
+        public ActionResult Browse(string category)
         {
             // Retrieve Genre and its Associated Items from database
-            var catagorieModel = storeDB.Catagories.Include("Items")
-                .Single(g => g.Name == catagorie);
+            var catagorieModel = storeDB.Categories.Include("Items")
+                .Single(g => g.Name == category);
 
             return View(catagorieModel);
         }
@@ -47,9 +47,9 @@ namespace OpenOrderFramework.Controllers
         [ChildActionOnly]
         public ActionResult CatagorieMenu()
         {
-            var catagories = storeDB.Catagories.ToList();
+            var categories = storeDB.Categories.ToList();
 
-            return PartialView(catagories);
+            return PartialView(categories);
         }
     }
 }

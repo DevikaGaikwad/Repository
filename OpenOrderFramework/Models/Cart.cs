@@ -11,6 +11,8 @@ namespace OpenOrderFramework.Models
     {
         [Key]
         public int ID { get; set; }
+
+        [StringLength(100)]
         public string CartId { get; set; }
         public int ItemId { get; set; }
         public int Count { get; set; }

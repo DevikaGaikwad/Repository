@@ -40,7 +40,7 @@ namespace OpenOrderFramework.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 items = items.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
-                                       || s.Catagorie.Name.ToUpper().Contains(searchString.ToUpper()));
+                                       || s.Category.Name.ToUpper().Contains(searchString.ToUpper()));
             }
             switch (sortOrder)
             {
@@ -63,7 +63,7 @@ namespace OpenOrderFramework.Controllers
             return View( items.ToPagedList(pageNumber, pageSize));
 
 
-            //var items = db.Items.Include(i => i.Catagorie);
+            //var items = db.Items.Include(i => i.Category);
             //return View(await items.ToListAsync());
         }
 
@@ -86,7 +86,7 @@ namespace OpenOrderFramework.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.CatagorieId = new SelectList(db.Catagories, "ID", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name");
             return View();
         }
 
@@ -103,7 +103,7 @@ namespace OpenOrderFramework.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CatagorieId = new SelectList(db.Catagories, "ID", "Name", item.CatagorieId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", item.CategoryId);
             return View(item);
         }
 
@@ -120,7 +120,7 @@ namespace OpenOrderFramework.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CatagorieId = new SelectList(db.Catagories, "ID", "Name", item.CatagorieId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", item.CategoryId);
             return View(item);
         }
 
@@ -136,7 +136,7 @@ namespace OpenOrderFramework.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CatagorieId = new SelectList(db.Catagories, "ID", "Name", item.CatagorieId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", item.CategoryId);
             return View(item);
         }
 

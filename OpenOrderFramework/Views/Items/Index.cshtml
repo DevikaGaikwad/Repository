@@ -82,7 +82,7 @@
 <table class="table">
     <tr>
         <th>
-            Catagorie
+            Category
         </th>
         <th>
             @Html.ActionLink("Item Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -100,7 +100,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Catagorie.Name)
+                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

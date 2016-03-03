@@ -22,6 +22,7 @@ namespace OpenOrderFramework.Models
         public System.DateTime OrderDate { get; set; }
 
         [ScaffoldColumn(false)]
+        [StringLength(100)]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "First Name is required")]
@@ -81,6 +82,7 @@ namespace OpenOrderFramework.Models
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
             ErrorMessage = "Email is is not valid.")]
         [DataType(DataType.EmailAddress)]
+        [StringLength(100)]
         public string Email { get; set; }
 
         [ScaffoldColumn(false)]
