@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -11,111 +10,108 @@ using OpenOrderFramework.Models;
 
 namespace OpenOrderFramework.Controllers
 {
-    [Authorize(Roles = "Admin,Vendor")]
-    public class CategoriesController : Controller
+    public class CuisinesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Categories
-        public async Task<ActionResult> Index()
+        // GET: Cuisines
+        public ActionResult Index()
         {
-            return View(await db.Categories.ToListAsync());
+            return View(db.Cuisines.ToList());
         }
 
-        // GET: Categories/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Cuisines/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
-            if (category == null)
+            Cuisine cuisine = db.Cuisines.Find(id);
+            if (cuisine == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(cuisine);
         }
 
-        // GET: Categories/Create
-         [Authorize(Roles = "Admin,Vendor")]
+        // GET: Cuisines/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Cuisines/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Vendor")]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Create([Bind(Include = "ID,Name")] Cuisine cuisine)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                await db.SaveChangesAsync();
+                db.Cuisines.Add(cuisine);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(cuisine);
         }
 
-        // GET: Categories/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Cuisines/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
-            if (category == null)
+            Cuisine cuisine = db.Cuisines.Find(id);
+            if (cuisine == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(cuisine);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Cuisines/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Cuisine cuisine)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.Entry(cuisine).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(cuisine);
         }
 
-        // GET: Categories/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Cuisines/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
-            if (category == null)
+            Cuisine cuisine = db.Cuisines.Find(id);
+            if (cuisine == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(cuisine);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Cuisines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Category category = await db.Categories.FindAsync(id);
-            db.Categories.Remove(category);
-            await db.SaveChangesAsync();
+            Cuisine cuisine = db.Cuisines.Find(id);
+            db.Cuisines.Remove(cuisine);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -238,6 +238,8 @@
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\CuisinesController.cs" />
+    <Compile Include="Controllers\FoodCourtsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -250,21 +252,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603030758547_Initial.cs" />
-    <Compile Include="Migrations\201603030758547_Initial.Designer.cs">
-      <DependentUpon>201603030758547_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603040858111_ImageChange.cs" />
-    <Compile Include="Migrations\201603040858111_ImageChange.Designer.cs">
-      <DependentUpon>201603040858111_ImageChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603041303528_DbDesign.cs" />
-    <Compile Include="Migrations\201603041303528_DbDesign.Designer.cs">
-      <DependentUpon>201603041303528_DbDesign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603041306440_DbDesign_Employee.cs" />
-    <Compile Include="Migrations\201603041306440_DbDesign_Employee.Designer.cs">
-      <DependentUpon>201603041306440_DbDesign_Employee.cs</DependentUpon>
+    <Compile Include="Migrations\201603041942462_Initial.cs" />
+    <Compile Include="Migrations\201603041942462_Initial.Designer.cs">
+      <DependentUpon>201603041942462_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -288,6 +278,8 @@
     <Compile Include="ViewModels\OrderDateGroup.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
+    <Compile Include="Views\EmployeesController.cs" />
+    <Compile Include="Views\VendorsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Hackathon.sdf" />
@@ -296,10 +288,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\card.css" />
+    <Content Include="Content\component.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\demo.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\flickity.css" />
+    <Content Include="Content\fonts\bpicons\bpicons.svg" />
+    <Content Include="Content\fonts\bpicons\license.txt" />
+    <Content Include="Content\fonts\pixelfabric-clothes\fonts\pixelfabric-clothes.svg" />
+    <Content Include="Content\fonts\pixelfabric-clothes\style.css" />
+    <Content Include="Content\food.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\PagedList1.css" />
@@ -313,8 +310,13 @@
     <Content Include="Images\4.jpg" />
     <Content Include="Images\5.jpg" />
     <Content Include="Images\6.jpg" />
-    <Content Include="Images\login.jpg" />
+    <Content Include="Images\dress.png" />
+    <Content Include="Images\grid.svg" />
+    <Content Include="Images\jacket.png" />
     <Content Include="Images\pattern.png" />
+    <Content Include="Images\shirt.png" />
+    <Content Include="Images\shoe.png" />
+    <Content Include="Images\trousers.png" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -345,6 +347,9 @@
     <Content Include="Scripts\d3.js" />
     <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\d3pie.min.js" />
+    <Content Include="Scripts\flickity.pkgd.min.js" />
+    <Content Include="Scripts\food.js" />
+    <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -358,6 +363,7 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.86080.js" />
+    <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -448,7 +454,6 @@
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -456,18 +461,10 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603030758547_Initial.resx">
-      <DependentUpon>201603030758547_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603040858111_ImageChange.resx">
-      <DependentUpon>201603040858111_ImageChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603041303528_DbDesign.resx">
-      <DependentUpon>201603041303528_DbDesign.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603041306440_DbDesign_Employee.resx">
-      <DependentUpon>201603041306440_DbDesign_Employee.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603041942462_Initial.resx">
+      <DependentUpon>201603041942462_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
