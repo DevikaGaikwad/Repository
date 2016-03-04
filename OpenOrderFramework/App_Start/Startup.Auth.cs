@@ -7,10 +7,13 @@ using OpenOrderFramework.Models;
 using Owin;
 using System;
 
-namespace OpenOrderFramework {
-    public partial class Startup {
+namespace OpenOrderFramework
+{
+    public partial class Startup
+    {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
-        public void ConfigureAuth(IAppBuilder app) {
+        public void ConfigureAuth(IAppBuilder app)
+        {
             // Configure the db context, user manager and role manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
@@ -19,10 +22,12 @@ namespace OpenOrderFramework {
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie
-            app.UseCookieAuthentication(new CookieAuthenticationOptions {
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
-                Provider = new CookieAuthenticationProvider {
+                Provider = new CookieAuthenticationProvider
+                {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
@@ -49,15 +54,15 @@ namespace OpenOrderFramework {
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: "997961830253794",
+                appSecret: "a3da33f64b1ac3fc77449d060b47713c");
 
-            //app.UseGoogleAuthentication();
-            //Not working currently
             GoogleAuthenticationOptions options = new GoogleAuthenticationOptions();
             options.AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode.Active;
-            app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication(
+                clientId: "820006066075-mpq80a3k21dobe0vdojqphv782vcbjb9.apps.googleusercontent.com",
+                clientSecret: "52VZVOp2XMsXHQi1MjsmrI9N");
         }
     }
 }
