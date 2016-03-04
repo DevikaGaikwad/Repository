@@ -28,10 +28,16 @@ namespace OpenOrderFramework.Models
         [StringLength(160)]
         public string Name { get; set; }
 
+        [DisplayName("Description")]
+        [StringLength(500)]
+        public string Description { get; set; }
 
+        [DisplayName("Veg")]
+        [Required(ErrorMessage = "Veg/Non Veg is required")]
+        public bool IsVeg { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
-        [Range(0.01, 999.99,ErrorMessage = "Price must be between 0.01 and 999.99")]
+        [Range(0.01, 999.99, ErrorMessage = "Price must be between 0.01 and 999.99")]
         public decimal Price { get; set; }
 
         [Column(TypeName = "image")]
@@ -71,7 +77,25 @@ namespace OpenOrderFramework.Models
         [StringLength(1024)]
         public string ItemPictureUrl { get; set; }
 
+        [DisplayName("Quantity")]
+        [Required(ErrorMessage = "Quantity is required")]
+        public int Quantity { get; set; }
+
+        [DisplayName("Calories")]
+        public int Calories { get; set; }
+
+        [Display(Name = "Preperation Time")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{hh:MM}", ApplyFormatInEditMode = true)]
+        public DateTime PreperationTime { get; set; }
+
+        public virtual Vendor Vendor { get; set; }
+
         public virtual Category Category { get; set; }
+
+        [Required(ErrorMessage = "Cuisine is required")]
+        public virtual Cuisine Cuisine { get; set; }
+
         public virtual List<OrderDetail> OrderDetails { get; set; }
     }
 }

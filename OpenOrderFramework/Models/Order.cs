@@ -89,13 +89,20 @@ namespace OpenOrderFramework.Models
         public decimal Total { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
 
-       
+        [Display(Name = "Pick Up Time")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{hh:MM}", ApplyFormatInEditMode = true)]
+        public DateTime PickUpTime { get; set; }
+
+        [Display(Name = "Rating")]
+        [Range(1, 5)]
+        public int Rating { get; set; }
 
         public string ToString(Order order)
         {
             StringBuilder bob = new StringBuilder();
 
-            bob.Append("<p>Order Information for Order: "+ order.OrderId +"<br>Placed at: " + order.OrderDate +"</p>").AppendLine();
+            bob.Append("<p>Order Information for Order: " + order.OrderId + "<br>Placed at: " + order.OrderDate + "</p>").AppendLine();
             bob.Append("<p>Name: " + order.FirstName + " " + order.LastName + "<br>");
             bob.Append("Address: " + order.Address + " " + order.City + " " + order.State + " " + order.PostalCode + "<br>");
             bob.Append("Contact: " + order.Email + "     " + order.Phone + "</p>");
