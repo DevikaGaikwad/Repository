@@ -215,7 +215,13 @@
   opacity: 1; }
 
 body {
-  font-family: "Helvetica Neue"; }
+  /*font-family: "Helvetica Neue";*/ 
+  font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    font-weight:bold;
+  
+}
   body > *, body > *:before, body > *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
