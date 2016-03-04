@@ -12,6 +12,7 @@ using PagedList;
 using OpenOrderFramework.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using OpenOrderFramework.ViewModels;
 
 namespace OpenOrderFramework.Controllers
 {
@@ -38,7 +39,7 @@ namespace OpenOrderFramework.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var items = from i in db.Items
-                           select i;
+                        select i;
             if (!String.IsNullOrEmpty(searchString))
             {
                 items = items.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
@@ -62,7 +63,12 @@ namespace OpenOrderFramework.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
-            return View( items.ToPagedList(pageNumber, pageSize));
+
+            ItemCuisineViewModel itemCuisine = new ItemCuisineViewModel();
+            itemCuisine.Items = items;
+            itemCuisine.Cuisines = db.Cuisines.Select(s => s).Distinct();
+
+            return View(itemCuisine);
 
 
             //var items = db.Items.Include(i => i.Category);
@@ -97,7 +103,7 @@ namespace OpenOrderFramework.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Vendor")]
-        public async Task<ActionResult> Create( Item item)
+        public async Task<ActionResult> Create(Item item)
         {
             var errors = ModelState
     .Where(x => x.Value.Errors.Count > 0)
@@ -131,7 +137,7 @@ namespace OpenOrderFramework.Controllers
         }
 
         // GET: Items/Edit/5
-         [Authorize(Roles = "Admin,Vendor")]
+        [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -164,7 +170,7 @@ namespace OpenOrderFramework.Controllers
         }
 
         // GET: Items/Delete/5
-         [Authorize(Roles = "Admin,Vendor")]
+        [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)

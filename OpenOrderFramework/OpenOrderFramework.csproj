@@ -275,6 +275,7 @@
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ItemCuisineViewModel.cs" />
     <Compile Include="ViewModels\OrderDateGroup.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
@@ -311,10 +312,12 @@
     <Content Include="Images\dress.png" />
     <Content Include="Images\grid.svg" />
     <Content Include="Images\jacket.png" />
+    <Content Include="Images\non-veg.jpg" />
     <Content Include="Images\pattern.png" />
     <Content Include="Images\shirt.png" />
     <Content Include="Images\shoe.png" />
     <Content Include="Images\trousers.png" />
+    <Content Include="Images\veg.jpg" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
