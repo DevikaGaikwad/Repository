@@ -292,12 +292,16 @@
   <ItemGroup>
     <Content Include="App_Data\Hackathon.sdf" />
     <Content Include="Content\BarChart.css" />
+    <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\card.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\demo.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\home.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\PagedList1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -309,6 +313,7 @@
     <Content Include="Images\4.jpg" />
     <Content Include="Images\5.jpg" />
     <Content Include="Images\6.jpg" />
+    <Content Include="Images\login.jpg" />
     <Content Include="Images\pattern.png" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -316,6 +321,8 @@
     <Content Include="Content\bootswatch.less" />
     <Content Include="Content\variables.less" />
     <Content Include="Content\datepicker.less" />
+    <Content Include="Content\bootstrap-social.less" />
+    <Content Include="Content\bootstrap-social.scss" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -348,6 +355,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.86080.js" />
     <Content Include="Scripts\respond.js" />
