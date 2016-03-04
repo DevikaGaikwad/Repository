@@ -88,17 +88,16 @@ namespace OpenOrderFramework.Controllers
         [Authorize(Roles = "Admin,Vendor")]
         public ActionResult Create()
         {
-            Item i = new Item();
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name");
             ViewBag.CuisineId = new SelectList(db.Cuisines, "ID", "Name");
-            return View(i);
+            return View();
         }
 
         // POST: Items/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,Vendor")]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Description,IsVeg,Price,InternalImage,ItemPictureUrl,Quantity,Calories,PreparationTime")] Item item)
+        public async Task<ActionResult> Create( Item item)
         {
             var errors = ModelState
     .Where(x => x.Value.Errors.Count > 0)
