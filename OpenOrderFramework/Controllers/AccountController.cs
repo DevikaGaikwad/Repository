@@ -15,6 +15,7 @@ namespace OpenOrderFramework.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -482,6 +483,11 @@ namespace OpenOrderFramework.Controllers
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
+            }
+            if(User.IsInRole("Vendor"))
+            {
+               // Vendor vendor = db.Vendors.Select(User.Identity.ToString());
+                return RedirectToAction("Index", "Vendors");
             }
             return RedirectToAction("Index", "Home");
         }

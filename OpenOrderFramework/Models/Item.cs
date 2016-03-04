@@ -34,6 +34,8 @@ namespace OpenOrderFramework.Models
         public bool IsVeg { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         [Range(0.01, 999.99, ErrorMessage = "Price must be between 0.01 and 999.99")]
         public decimal Price { get; set; }
 

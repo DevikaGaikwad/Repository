@@ -98,6 +98,11 @@ namespace OpenOrderFramework.Models
         [Range(1, 5)]
         public int Rating { get; set; }
 
+        [DisplayName("EmployeeId")]
+        public int EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
+
+
         public string ToString(Order order)
         {
             StringBuilder bob = new StringBuilder();

@@ -13,7 +13,7 @@ namespace OpenOrderFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603041942462_Initial"; }
+            get { return "201603042145225_Initial"; }
         }
         
         string IMigrationMetadata.Source
