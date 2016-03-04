@@ -45,7 +45,7 @@ namespace OpenOrderFramework.Controllers
         //
         // GET: /Store/GenreMenu
         [ChildActionOnly]
-        public ActionResult CatagorieMenu()
+        public ActionResult CategoryMenu()
         {
             var categories = storeDB.Categories.ToList();
 

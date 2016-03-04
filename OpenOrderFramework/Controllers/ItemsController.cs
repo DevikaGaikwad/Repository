@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using PagedList.Mvc;
 using PagedList;
 using OpenOrderFramework.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace OpenOrderFramework.Controllers
 {
@@ -98,9 +100,24 @@ namespace OpenOrderFramework.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Items.Add(item);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Items.Add(item);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}",
+                                                    validationError.PropertyName,
+                                                    validationError.ErrorMessage);
+                        }
+                    }
+                }
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", item.CategoryId);

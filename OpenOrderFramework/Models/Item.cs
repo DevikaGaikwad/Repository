@@ -34,6 +34,8 @@ namespace OpenOrderFramework.Models
         [Range(0.01, 999.99,ErrorMessage = "Price must be between 0.01 and 999.99")]
         public decimal Price { get; set; }
 
+        [Column(TypeName = "image")]
+        [MaxLength]
         public byte[] InternalImage { get; set; }
 
         [Display(Name = "Local file")]
