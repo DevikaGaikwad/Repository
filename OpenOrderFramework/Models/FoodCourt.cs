@@ -19,6 +19,8 @@ namespace OpenOrderFramework.Models
         [StringLength(100)]
         public string Name { get; set; }
 
+        [Column(TypeName = "image")]
+        [MaxLength]
         public byte[] InternalImage { get; set; }
 
         [Display(Name = "Local file")]
