@@ -11,7 +11,7 @@ using OpenOrderFramework.Models;
 
 namespace OpenOrderFramework.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Vendor")]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -38,7 +38,7 @@ namespace OpenOrderFramework.Controllers
         }
 
         // GET: Categories/Create
-         [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin,Vendor")]
         public ActionResult Create()
         {
             return View();
@@ -49,7 +49,7 @@ namespace OpenOrderFramework.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> Create([Bind(Include = "ID,Name")] Category category)
         {
             if (ModelState.IsValid)

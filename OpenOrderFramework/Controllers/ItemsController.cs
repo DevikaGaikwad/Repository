@@ -85,19 +85,26 @@ namespace OpenOrderFramework.Controllers
         }
 
         // GET: Items/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Vendor")]
         public ActionResult Create()
         {
+            Item i = new Item();
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name");
-            return View();
+            ViewBag.CuisineId = new SelectList(db.Cuisines, "ID", "Name");
+            return View(i);
         }
 
         // POST: Items/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Create(Item item)
+        [Authorize(Roles = "Admin,Vendor")]
+        public async Task<ActionResult> Create([Bind(Include = "ID,Name,Description,IsVeg,Price,InternalImage,ItemPictureUrl,Quantity,Calories,PreparationTime")] Item item)
         {
+            var errors = ModelState
+    .Where(x => x.Value.Errors.Count > 0)
+    .Select(x => new { x.Key, x.Value.Errors })
+    .ToArray();
+
             if (ModelState.IsValid)
             {
                 try
@@ -125,7 +132,7 @@ namespace OpenOrderFramework.Controllers
         }
 
         // GET: Items/Edit/5
-         [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -144,7 +151,7 @@ namespace OpenOrderFramework.Controllers
         // POST: Items/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> Edit(Item item)
         {
             if (ModelState.IsValid)
@@ -158,7 +165,7 @@ namespace OpenOrderFramework.Controllers
         }
 
         // GET: Items/Delete/5
-         [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -176,7 +183,7 @@ namespace OpenOrderFramework.Controllers
         // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Vendor")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Item item = await db.Items.FindAsync(id);
