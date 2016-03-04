@@ -508,7 +508,7 @@
 </div>
 
 <h2>Order some good food.</h2>
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+@if (Request.IsAuthenticated )
 {
     <p>
         @Html.ActionLink("Create New", "Create")

@@ -21,9 +21,6 @@ namespace OpenOrderFramework.Models
         [ScaffoldColumn(false)]
         public int ID { get; set; }
 
-        [DisplayName("Category")]
-        public int CategoryId { get; set; }
-
         [Required(ErrorMessage = "An Item Name is required")]
         [StringLength(160)]
         public string Name { get; set; }
@@ -84,17 +81,23 @@ namespace OpenOrderFramework.Models
         [DisplayName("Calories")]
         public int Calories { get; set; }
 
-        [Display(Name = "Preperation Time")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{hh:MM}", ApplyFormatInEditMode = true)]
-        public DateTime PreperationTime { get; set; }
+        [Display(Name = "Preparation Time")]
+        [Range(0, 120, ErrorMessage = "Preparation Time must be between 0 and 120")]
+        [Required(ErrorMessage = "Enter Preparation Time in minutes")]
+        public int PreparationTime { get; set; }
 
         public virtual Vendor Vendor { get; set; }
-
+        
+        [DisplayName("Category")]
+        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
+
+        [DisplayName("Cuisine")]
         [Required(ErrorMessage = "Cuisine is required")]
+        public int CuisineId { get; set; }
         public virtual Cuisine Cuisine { get; set; }
+
 
         public virtual List<OrderDetail> OrderDetails { get; set; }
     }

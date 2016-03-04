@@ -28,3 +28,7 @@ RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => It
 RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File    at OpenOrderFramework.Models.Item.set_File(HttpPostedFileBase value) in c:\Demo Projects\OrderFramework\OpenOrderFrameworkv2\OpenOrderFramework\OpenOrderFramework\Models\Item.cs:line 54
 RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File Object reference not set to an instance of an object.
 RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File    at OpenOrderFramework.Models.Item.set_File(HttpPostedFileBase value) in c:\Users\mufaddal_gulshan\Source\Repos\Repository\OpenOrderFramework\Models\Item.cs:line 54
+RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File Object reference not set to an instance of an object.
+RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File    at OpenOrderFramework.Models.Item.set_File(HttpPostedFileBase value) in d:\Hackathon1\OpenOrderFramework\Models\Item.cs:line 59
+RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File Object reference not set to an instance of an object.
+RuntimeMethodInfo.UnsafeInvokeInternal => RuntimeMethodHandle.InvokeMethod => Item.set_File    at OpenOrderFramework.Models.Item.set_File(HttpPostedFileBase value) in d:\Hackathon1\OpenOrderFramework\Models\Item.cs:line 59

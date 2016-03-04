@@ -3,119 +3,115 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OpenOrderFramework.Models;
 
-namespace OpenOrderFramework.Controllers
+namespace OpenOrderFramework.Views
 {
-    [Authorize(Roles = "Admin,Vendor")]
-    public class CategoriesController : Controller
+    public class VendorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Categories
-        public async Task<ActionResult> Index()
+        // GET: Vendors
+        public ActionResult Index()
         {
-            return View(await db.Categories.ToListAsync());
+            return View(db.Vendors.ToList());
         }
 
-        // GET: Categories/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Vendors/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
-            if (category == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(vendor);
         }
 
-        // GET: Categories/Create
-         [Authorize(Roles = "Admin,Vendor")]
+        // GET: Vendors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Vendors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Vendor")]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Create([Bind(Include = "ID,Name")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                await db.SaveChangesAsync();
+                db.Vendors.Add(vendor);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(vendor);
         }
 
-        // GET: Categories/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Vendors/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
-            if (category == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(vendor);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Vendors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.Entry(vendor).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(vendor);
         }
 
-        // GET: Categories/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Vendors/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
-            if (category == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(vendor);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Vendors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Category category = await db.Categories.FindAsync(id);
-            db.Categories.Remove(category);
-            await db.SaveChangesAsync();
+            Vendor vendor = db.Vendors.Find(id);
+            db.Vendors.Remove(vendor);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
