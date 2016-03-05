@@ -89,7 +89,7 @@ namespace OpenOrderFramework.Models
         public int PreparationTime { get; set; }
 
         public virtual Vendor Vendor { get; set; }
-        
+
         [DisplayName("Category")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
@@ -100,6 +100,26 @@ namespace OpenOrderFramework.Models
         public int CuisineId { get; set; }
         public virtual Cuisine Cuisine { get; set; }
 
+        [DisplayName("Mon")]
+        public bool Mon { get; set; }
+
+        [DisplayName("Tue")]
+        public bool Tue { get; set; }
+
+        [DisplayName("Wed")]
+        public bool Wed { get; set; }
+
+        [DisplayName("Thu")]
+        public bool Thu { get; set; }
+
+        [DisplayName("Fri")]
+        public bool Fri { get; set; }
+
+        [DisplayName("Sat")]
+        public bool Sat { get; set; }
+
+        [DisplayName("Sun")]
+        public bool Sun { get; set; }
 
         public virtual List<OrderDetail> OrderDetails { get; set; }
     }

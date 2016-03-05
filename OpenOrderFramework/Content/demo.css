@@ -30,27 +30,27 @@ input{
 	color:#979797;
 	width:190px;
 }
-address,caption,cite,code,dfn,th,var {
+/*address,caption,cite,code,dfn,th,var {
 	font-style:normal;
 	font-weight:normal;
-}
+}*/
 ol,ul {
 	list-style:none;
 }
 caption,th {
 	text-align:left;
 }
-h1,h2,h3,h4,h5,h6 {
+/*h1,h2,h3,h4,h5,h6 {
 	font-size:100%;
 	font-weight:normal;
-}
+}*/
 q:before,q:after {
 	content:'';
 }
 abbr,acronym { border:0;
 }
 /* General Demo Style */
-body{
+/*body{
 	font-family: Constantia, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	background: #000;
 	font-weight: 400;
@@ -58,7 +58,7 @@ body{
 	color: #aa3e03;
 	overflow-y: scroll;
 	overflow-x: hidden;
-}
+}*/
 .ie7 body{
 	overflow:hidden;
 }
@@ -81,7 +81,7 @@ a{
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
     text-align: left;
 }
-.container > header h1{
+/*.container > header h1{
 	font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
 	font-size: 35px;
 	line-height: 35px;
@@ -90,18 +90,18 @@ a{
 	color: #fff;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
     padding: 0px 0px 5px 0px;
-}
+}*/
 .container > header h1 span{
 
 }
-.container > header h2, p.info{
+/*.container > header h2, p.info{
 	font-size: 16px;
 	font-style: italic;
 	color: #f8f8f8;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
-}
+}*/
 /* Header Style */
-.codrops-top{
+/*.codrops-top{
 	font-family: Arial, sans-serif;
 	line-height: 24px;
 	font-size: 11px;
@@ -114,7 +114,7 @@ a{
 	-moz-box-shadow: 1px 0px 2px #000;
 	-webkit-box-shadow: 1px 0px 2px #000;
 	box-shadow: 1px 0px 2px #000;
-}
+}*/
 .codrops-top a{
 	padding: 0px 10px;
 	letter-spacing: 1px;

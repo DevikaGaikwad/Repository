@@ -10,6 +10,12 @@
 <meta name="author" content="Codrops" />
  <link href="~/Content/demo.css" rel="stylesheet" />
  <link href="~/Content/home.css" rel="stylesheet" />  
+
+
+<!-- General demo styles & header -->
+<link rel="stylesheet" type="text/css" href="~/Content/food.css" />
+
+
  <script type="text/javascript" src="~/Scripts/modernizr.custom.86080.js"></script>
 
 <ul class="cb-slideshow">
@@ -23,8 +29,8 @@
 <div class="container">
     
     <header>
-        <h1>My Food Order</h1>      
-        <p><button type="button" class="btn btn-primary btn-large" onclick="location.href='@Url.Action("Index", "Items")'">Order Some Food &raquo;</button></p>  
+        @*<h1>My Food Order</h1>*@      
+        <p><button type="button" class="btn btn-success btn-sm" onclick="location.href='@Url.Action("Index", "Items")'">Order Some Food &raquo;</button></p>  
         
     </header>
 </div>

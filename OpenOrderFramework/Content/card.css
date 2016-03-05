@@ -40,7 +40,9 @@
   -ms-transform: none;
   transform: none; }
 .card.amex.identified .front:before, .card.amex.identified .back:before {
-  background-color: #108168; }
+  background-color: #108168; 
+
+}
 .card.amex.identified .front .logo.amex {
   opacity: 1; }
 .card.amex.identified .front .cvc {
@@ -48,9 +50,12 @@
 .card.amex.identified .front:after {
   opacity: 1; }
 
+
+
 .logo {
   height: 36px;
   width: 60px;
+
   font-style: italic; }
   .logo, .logo:before, .logo:after {
     -webkit-box-sizing: border-box;
@@ -58,7 +63,7 @@
     box-sizing: border-box; }
 
 .logo.discover {
-  background: #FF6600;
+  background: #FF6600;       
   color: #111;
   text-transform: uppercase;
   font-style: normal;
@@ -100,8 +105,13 @@
   right: 12%;
   top: 18%; }
 
+
+
 .card.discover.identified .front:before, .card.discover.identified .back:before {
-  background-color: #86B8CF; }
+  /*background-color:  #86B8CF;*/ 
+  background-color: #49e071;
+
+}
 .card.discover.identified .logo.discover {
   opacity: 1; }
 .card.discover.identified .front:after {
@@ -109,7 +119,8 @@
   transition: 400ms;
   content: " ";
   display: block;
-  background-color: #FF6600;
+  /*background-color: #FF6600;*/
+  background-color: #49e62a;
   background-image: -webkit-linear-gradient(#FF6600, #ffa166, #FF6600);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#FF6600), color-stop(#ffa166), to(#FF6600));
   background-image: linear-gradient(#FF6600, #ffa166, #FF6600);
@@ -135,7 +146,8 @@
 .logo.visa.visa {
   background: white;
   text-transform: uppercase;
-  color: #1A1876;
+  /*color: #1A1876;*/
+  background-color: #49e62a;
   text-align: center;
   font-weight: bold;
   font-size: 15px; }
@@ -152,7 +164,9 @@
     top: 100%; }
 
 .card.visa.identified .front:before, .card.visa.identified .back:before {
-  background-color: #191278; }
+  /*background-color: #191278;*/ 
+  background-color: #49e62a;
+}
 .card.visa.identified .logo.visa {
   opacity: 1; }
 
@@ -194,12 +208,20 @@
   -webkit-box-shadow: none;
   box-shadow: none; }
 .card.mastercard.identified .front:before, .card.mastercard.identified .back:before {
-  background-color: #0061A8; }
+  /*background-color: #0061A8;*/
+  background-color: #49e62a;
+}
 .card.mastercard.identified .logo.mastercard {
   opacity: 1; }
 
 body {
-  font-family: "Helvetica Neue"; }
+  /*font-family: "Helvetica Neue";*/ 
+  font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    font-weight:bold;
+  
+}
   body > *, body > *:before, body > *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -349,7 +371,7 @@ body {
     -ms-transform: rotateY(180deg);
     transform: rotateY(180deg); }
     .card .back .bar {
-      background-color: #444;
+      background-color: #444;      
       background-image: -webkit-linear-gradient(#444, #333);
       background-image: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
       background-image: linear-gradient(#444, #333);

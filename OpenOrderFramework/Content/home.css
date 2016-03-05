@@ -45,8 +45,8 @@
     animation: titleAnimation 36s linear infinite 0s;
 }
 .cb-slideshow li div h3 {
-    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
-    font-size: 120px;
+    /*font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    font-size: 120px;*/
     padding: 0 30px;
     line-height: 120px;
     color: #ffffff;

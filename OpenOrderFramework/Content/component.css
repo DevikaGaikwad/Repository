@@ -125,6 +125,12 @@
 	color: #595b64;
 }
 
+.meta__calorie {
+	font-size: .75em;
+	font-weight: bold;
+	display: block;
+	color: #595b64;
+}
 /* Action style */
 
 .action {
@@ -169,6 +175,20 @@
 	transition: opacity .3s, transform .3s;
 	-webkit-transform: translate3d(-5px, 0, 0);
 	transform: translate3d(-5px, 0, 0);
+}
+
+.veg {
+	position: absolute;
+	bottom: 1.35em;
+	right: .95em;
+    height: 1em;
+}
+
+.nonveg {
+	position: absolute;
+	bottom: 1.35em;
+	right: .95em;
+    height: .85em;
 }
 
 .no-touch .action--buy {

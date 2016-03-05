@@ -8,15 +8,15 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Items", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Item</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -99,6 +99,27 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PreparationTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PreparationTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="col-md-2 control-label">Day(s) of Week</label>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Mon, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Mon, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Tue, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Tue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Wed, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Wed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Thu, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Thu, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Fri, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Fri, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Sat, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Sat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.Sun, new { htmlAttributes = new { @class = "col-md-1 checkbox-inline" } })
+                    @Html.CheckBoxFor(model => model.Sun, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
             </div>
         </div>
         <div class="form-group">
