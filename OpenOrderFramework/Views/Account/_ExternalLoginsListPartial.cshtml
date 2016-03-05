@@ -1,9 +1,17 @@
 ﻿@model OpenOrderFramework.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="~/Content/login.css">
 <link rel="stylesheet" href="~/Content/font-awesome.css">
+<link rel="stylesheet" href="~/Content/docs.css">
 <link rel="stylesheet" href="~/Content/bootstrap-social.css">
+
+@*<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="assets/css/font-awesome.css" rel="stylesheet">
+<link href="assets/css/docs.css" rel="stylesheet">
+<link href="bootstrap-social.css" rel="stylesheet">*@
 
 
 
@@ -23,20 +31,24 @@
             <div id="socialLoginList">
                 
                     <div class="loginbtn">
-                        @*<h4 class="form-title1">Or Log In using</h4>*@
+                        <h5 class="form-title1">Or Log In via</h5>
 
                         @foreach (AuthenticationDescription p in loginProviders)
                         {
 
                             if (@p.Caption == "Facebook")
-                            {
-                                <button type="submit" class="btn btn-block btn-social btn-facebook" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><span class="fa fa-facebook"></span> @p.AuthenticationType</button>
-                                <br /><br />
+                            {                                
+                                 <button type="submit" class="btn btn-block btn-social btn-facebook" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                                    
+                                         <span class="fa fa-facebook"> </span>
+                                         @p.AuthenticationType
+                                     </button>
+                                 <br />
                             }
                             if (@p.Caption == "Google")
                             {
                                 <button type="submit" class="btn btn-block btn-social btn-google" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><span class="fa fa-google"></span> @p.AuthenticationType</button>
-                                <br /><br />
+                                <br />
                             }
                         }
 
