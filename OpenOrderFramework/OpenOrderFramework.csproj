@@ -294,7 +294,9 @@
     <Content Include="Content\component.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\demo.css" />
+    <Content Include="Content\docs.css" />
     <Content Include="Content\flickity.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\bpicons\bpicons.svg" />
     <Content Include="Content\fonts\bpicons\license.txt" />
     <Content Include="Content\fonts\pixelfabric-clothes\fonts\pixelfabric-clothes.svg" />
