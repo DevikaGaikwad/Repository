@@ -72,6 +72,8 @@
     <div class="filter">
         <span class="filter__label">Filter: </span>
         <button class="action filter__item filter__item--selected" data-filter="*">All</button>
+        <button class="action filter__item " data-filter=".veg">Veg</button>
+        <button class="action filter__item " data-filter=".nonVeg">Non-Veg</button>
         @foreach (var cuisine in Model.Cuisines)
         {
             <button class="action filter__item" data-filter=".@cuisine.Name.Replace(" ","")"><span class="action__text">@cuisine.Name</span></button>
@@ -98,26 +100,38 @@
         <!-- Grid items -->
         @foreach (var item in Model.Items)
         {
-            <div class="grid__item @item.Cuisine.Name.Replace(" ","")">
-                <div class="slider">
-                    <div class="slider__item"><img src="@Url.Action("RenderImage", new { id = item.ID})" alt=@item.Name /></div>
+            if (@item.IsVeg)
+            {
+                <div class="grid__item veg @item.Cuisine.Name.Replace(" ","")">
+                    <div class="slider">
+                        <div class="slider__item"><img src="@Url.Action("RenderImage", new { id = item.ID})" alt=@item.Name /></div>
+                    </div>
+                    <div class="meta">
+                        <h3 class="meta__title">@item.Name</h3>
+                        <span class="meta__brand">@item.Description</span>
+                        <span class="meta__price">@item.Price</span>
+                        <span class="meta__calorie">@item.Calories cal</span>
+                    </div>
+                    <button class="action action--button action--buy AddLink" data-id="@item.ID"><i class="fa fa-shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+                    <img class="veg-icon" src="~/Images/veg.jpg" />
                 </div>
-                <div class="meta">
-                    <h3 class="meta__title">@item.Name</h3>
-                    <span class="meta__brand">@item.Description</span>
-                    <span class="meta__price">@item.Price</span>
-                    <span class="meta__calorie">@item.Calories cal</span>
+            }
+            else
+            {
+                <div class="grid__item nonVeg @item.Cuisine.Name.Replace(" ","")">
+                    <div class="slider">
+                        <div class="slider__item"><img src="@Url.Action("RenderImage", new { id = item.ID})" alt=@item.Name /></div>
+                    </div>
+                    <div class="meta">
+                        <h3 class="meta__title">@item.Name</h3>
+                        <span class="meta__brand">@item.Description</span>
+                        <span class="meta__price">@item.Price</span>
+                        <span class="meta__calorie">@item.Calories cal</span>
+                    </div>
+                    <button class="action action--button action--buy AddLink" data-id="@item.ID"><i class="fa fa-shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
+                    <img class="nonveg-icon" src="~/Images/non-veg.jpg" />
                 </div>
-                <button class="action action--button action--buy AddLink" data-id="@item.ID"><i class="fa fa-shopping-cart"></i><span class="text-hidden">Add to cart</span></button>
-                @if (@item.IsVeg)
-                {
-                    <img class="veg" src="~/Images/veg.jpg" />
-                }
-                else
-                {
-                    <img class="nonveg" src="~/Images/non-veg.jpg" />
-                }
-            </div>
+            }
         }
 
         @*<div class="grid__item shirts">
@@ -522,79 +536,79 @@
 </div>
 
 @*<h2>Order some good food.</h2>
-@if (Request.IsAuthenticated)
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-<div class="bs-docs-section">
-    <div class="row">
-        @using (Html.BeginForm("Index", "Items", FormMethod.Get))
-        {
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon">Find: </span>
-                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                    <span class="input-group-btn">
-                        <input type="submit" class="btn btn-info btn-sm" value="Search" />
-                    </span>
-                </div>
-            </div>
-        }
-    </div>
-</div>
-<table class="table">
-    <tr>
-        <th>
-            Category
-        </th>
-        <th>
-            @Html.ActionLink("Item Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Item Price", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            Picture
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Items)
+    @if (Request.IsAuthenticated)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemPictureUrl)
-            </td>
-            <td>
-                <a href="#" class="AddLink"
-                   data-id="@item.ID" data-toggle="modal" data-target="#myModal">
-                    Add
-                    to cart
-                </a>
-                @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.ID }, new { htmlAttributes = new { @data_toggle = "modal", @data_target = "#myModal" } }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                }
-            </td>
-        </tr>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
     }
-</table>
-<br />*@
+    <div class="bs-docs-section">
+        <div class="row">
+            @using (Html.BeginForm("Index", "Items", FormMethod.Get))
+            {
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Find: </span>
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-info btn-sm" value="Search" />
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                @Html.ActionLink("Item Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                @Html.ActionLink("Item Price", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Picture
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemPictureUrl)
+                </td>
+                <td>
+                    <a href="#" class="AddLink"
+                       data-id="@item.ID" data-toggle="modal" data-target="#myModal">
+                        Add
+                        to cart
+                    </a>
+                    @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.ID }, new { htmlAttributes = new { @data_toggle = "modal", @data_target = "#myModal" } }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    <br />*@
 @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageN
                     </td>
                 </tr>

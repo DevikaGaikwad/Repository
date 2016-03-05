@@ -151,7 +151,7 @@
 }
 
 .action--button {
-	color: #5c5edc;
+	color: #43ac6a;
 }
 
 .no-touch .action--button:hover {
@@ -177,14 +177,14 @@
 	transform: translate3d(-5px, 0, 0);
 }
 
-.veg {
+.veg-icon {
 	position: absolute;
 	bottom: 1.35em;
 	right: .95em;
     height: 1em;
 }
 
-.nonveg {
+.nonveg-iconfilter__item--selected {
 	position: absolute;
 	bottom: 1.35em;
 	right: .95em;
@@ -245,8 +245,8 @@
 }
 
 .filter__item--selected {
-	color: #5c5edc;
-	border-color: #5c5edc;
+	color: #43ac6a;
+	border-color: #43ac6a;
 }
 
 .filter__item .icon {
@@ -254,7 +254,7 @@
 	display: none;
 }
 
-/* Shopping cart */
+/* Fing cart */
 
 .cart {
 	font-size: 1.5em;
@@ -330,7 +330,7 @@
 	text-align: center;
 	color: #fff;
 	border-radius: 50%;
-	background: #5c5edc;
+	background: #43ac6a;
 }
 
 .cart--animate .cart__count {
