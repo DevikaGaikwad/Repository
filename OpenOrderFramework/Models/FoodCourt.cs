@@ -56,5 +56,6 @@ namespace OpenOrderFramework.Models
         [StringLength(1024)]
         public string FoodCourtPictureUrl { get; set; }
 
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

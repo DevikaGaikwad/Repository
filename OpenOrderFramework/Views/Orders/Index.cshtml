@@ -43,26 +43,15 @@
         <th>
             @Html.ActionLink("Order Total", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th>
-            Address
-        </th>
-        <th>
-            City
-        </th>
-        <th>
-            State
-        </th>
-        <th>
-            Postal Code
-        </th>
-        <th>
-            Country
-        </th>
-        <th>
-            Phone
-        </th>
+       
         <th>
             Email
+        </th>
+        <th>
+            Pick up time
+        </th>
+        <th>
+            Ratings
         </th>
         <th></th>
     </tr>
@@ -79,26 +68,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Total)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PickUpTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |

@@ -45,7 +45,6 @@ namespace OpenOrderFramework.Models
         public DbSet<FoodCourt> FoodCourts { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
-        public DbSet<ItemAvailability> ItemAvailabilities { get; set; }
 
         static ApplicationDbContext()
         {
