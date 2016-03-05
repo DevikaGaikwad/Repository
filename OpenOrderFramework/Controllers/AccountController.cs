@@ -15,6 +15,7 @@ namespace OpenOrderFramework.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -483,6 +484,7 @@ namespace OpenOrderFramework.Controllers
             {
                 return Redirect(returnUrl);
             }
+           
             return RedirectToAction("Index", "Home");
         }
 

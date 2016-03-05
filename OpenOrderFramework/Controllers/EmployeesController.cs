@@ -8,109 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using OpenOrderFramework.Models;
 
-namespace OpenOrderFramework.Views
+namespace OpenOrderFramework.Controllers
 {
-    public class VendorsController : Controller
+    public class EmployeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Vendors
+        // GET: Employees
         public ActionResult Index()
         {
-            return View(db.Vendors.ToList());
+            return View(db.Employees.ToList());
         }
 
-        // GET: Vendors/Details/5
+        // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vendor vendor = db.Vendors.Find(id);
-            if (vendor == null)
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(vendor);
+            return View(employee);
         }
 
-        // GET: Vendors/Create
+        // GET: Employees/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Vendors/Create
+        // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Vendor vendor)
+        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,ProfilePicture,ProfilePictureUrl")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Vendors.Add(vendor);
+                db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(vendor);
+            return View(employee);
         }
 
-        // GET: Vendors/Edit/5
+        // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vendor vendor = db.Vendors.Find(id);
-            if (vendor == null)
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(vendor);
+            return View(employee);
         }
 
-        // POST: Vendors/Edit/5
+        // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Vendor vendor)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,ProfilePicture,ProfilePictureUrl")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vendor).State = EntityState.Modified;
+                db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(vendor);
+            return View(employee);
         }
 
-        // GET: Vendors/Delete/5
+        // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vendor vendor = db.Vendors.Find(id);
-            if (vendor == null)
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(vendor);
+            return View(employee);
         }
 
-        // POST: Vendors/Delete/5
+        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vendor vendor = db.Vendors.Find(id);
-            db.Vendors.Remove(vendor);
+            Employee employee = db.Employees.Find(id);
+            db.Employees.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

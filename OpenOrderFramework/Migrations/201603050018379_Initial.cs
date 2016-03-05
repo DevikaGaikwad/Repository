@@ -37,14 +37,24 @@ namespace OpenOrderFramework.Migrations
                         PreparationTime = c.Int(nullable: false),
                         CategoryId = c.Int(nullable: false),
                         CuisineId = c.Int(nullable: false),
+                        Mon = c.Boolean(nullable: false),
+                        Tue = c.Boolean(nullable: false),
+                        Wed = c.Boolean(nullable: false),
+                        Thu = c.Boolean(nullable: false),
+                        Fri = c.Boolean(nullable: false),
+                        Sat = c.Boolean(nullable: false),
+                        Sun = c.Boolean(nullable: false),
+                        FoodCourt_ID = c.Int(),
                         Vendor_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .ForeignKey("dbo.Cuisines", t => t.CuisineId, cascadeDelete: true)
+                .ForeignKey("dbo.FoodCourts", t => t.FoodCourt_ID)
                 .ForeignKey("dbo.Vendors", t => t.Vendor_ID)
                 .Index(t => t.CategoryId)
                 .Index(t => t.CuisineId)
+                .Index(t => t.FoodCourt_ID)
                 .Index(t => t.Vendor_ID);
             
             CreateTable(
@@ -90,17 +100,10 @@ namespace OpenOrderFramework.Migrations
                         Username = c.String(maxLength: 100),
                         FirstName = c.String(nullable: false, maxLength: 160),
                         LastName = c.String(nullable: false, maxLength: 160),
-                        Address = c.String(nullable: false, maxLength: 70),
-                        City = c.String(nullable: false, maxLength: 40),
-                        State = c.String(nullable: false, maxLength: 40),
-                        PostalCode = c.String(nullable: false, maxLength: 10),
-                        Country = c.String(nullable: false, maxLength: 40),
-                        Phone = c.String(nullable: false, maxLength: 24),
-                        Experation = c.DateTime(nullable: false),
                         SaveInfo = c.Boolean(nullable: false),
                         Email = c.String(maxLength: 100),
                         Total = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        PickUpTime = c.DateTime(nullable: false),
+                        PickUpTime = c.String(maxLength: 100),
                         Rating = c.Int(nullable: false),
                         Employee_ID = c.Int(),
                     })
@@ -114,11 +117,12 @@ namespace OpenOrderFramework.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 100),
-                        FoodCourt_ID = c.Int(),
+                        Identity = c.String(maxLength: 500),
+                        FoodCourtId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.FoodCourts", t => t.FoodCourt_ID)
-                .Index(t => t.FoodCourt_ID);
+                .ForeignKey("dbo.FoodCourts", t => t.FoodCourtId, cascadeDelete: true)
+                .Index(t => t.FoodCourtId);
             
             CreateTable(
                 "dbo.FoodCourts",
@@ -142,18 +146,6 @@ namespace OpenOrderFramework.Migrations
                         ProfilePictureUrl = c.String(maxLength: 1024),
                     })
                 .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.ItemAvailabilities",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Day = c.String(nullable: false, maxLength: 4000),
-                        Item_ID = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Items", t => t.Item_ID)
-                .Index(t => t.Item_ID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -239,11 +231,11 @@ namespace OpenOrderFramework.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.ItemAvailabilities", "Item_ID", "dbo.Items");
             DropForeignKey("dbo.Orders", "Employee_ID", "dbo.Employees");
             DropForeignKey("dbo.Carts", "ItemId", "dbo.Items");
             DropForeignKey("dbo.Items", "Vendor_ID", "dbo.Vendors");
-            DropForeignKey("dbo.Vendors", "FoodCourt_ID", "dbo.FoodCourts");
+            DropForeignKey("dbo.Vendors", "FoodCourtId", "dbo.FoodCourts");
+            DropForeignKey("dbo.Items", "FoodCourt_ID", "dbo.FoodCourts");
             DropForeignKey("dbo.OrderDetails", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.OrderDetails", "ItemId", "dbo.Items");
             DropForeignKey("dbo.Items", "CuisineId", "dbo.Cuisines");
@@ -254,12 +246,12 @@ namespace OpenOrderFramework.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.ItemAvailabilities", new[] { "Item_ID" });
-            DropIndex("dbo.Vendors", new[] { "FoodCourt_ID" });
+            DropIndex("dbo.Vendors", new[] { "FoodCourtId" });
             DropIndex("dbo.Orders", new[] { "Employee_ID" });
             DropIndex("dbo.OrderDetails", new[] { "ItemId" });
             DropIndex("dbo.OrderDetails", new[] { "OrderId" });
             DropIndex("dbo.Items", new[] { "Vendor_ID" });
+            DropIndex("dbo.Items", new[] { "FoodCourt_ID" });
             DropIndex("dbo.Items", new[] { "CuisineId" });
             DropIndex("dbo.Items", new[] { "CategoryId" });
             DropIndex("dbo.Carts", new[] { "ItemId" });
@@ -268,7 +260,6 @@ namespace OpenOrderFramework.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.ItemAvailabilities");
             DropTable("dbo.Employees");
             DropTable("dbo.FoodCourts");
             DropTable("dbo.Vendors");
