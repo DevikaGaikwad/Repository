@@ -154,6 +154,8 @@ namespace OpenOrderFramework.Models
             // Set the order's total to the orderTotal count
             order.Total = orderTotal;
 
+            storeDB.Entry(order).State = System.Data.Entity.EntityState.Modified;
+
             // Save the order
             storeDB.SaveChanges();
             // Empty the shopping cart

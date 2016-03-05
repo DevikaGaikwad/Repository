@@ -102,7 +102,7 @@
         {
             if (@item.IsVeg)
             {
-                <div class="grid__item veg @item.Cuisine.Name.Replace(" ","")">
+                <div class="grid__item  grid__item--size-a veg @item.Cuisine.Name.Replace(" ","")">
                     <div class="slider">
                         <div class="slider__item"><img src="@Url.Action("RenderImage", new { id = item.ID})" alt=@item.Name /></div>
                     </div>
