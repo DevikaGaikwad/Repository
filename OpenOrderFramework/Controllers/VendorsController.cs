@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OpenOrderFramework.Models;
+using Microsoft.AspNet.Identity;
 
 namespace OpenOrderFramework.Controllers
 {
@@ -18,6 +19,10 @@ namespace OpenOrderFramework.Controllers
         public ActionResult Index()
         {
             var vendors = db.Vendors.Include(v => v.FoodCourt);
+            var vendor=db.Vendors.Where(x => x.Identity.Equals(User.Identity.Name)).FirstOrDefault();
+           
+            if(vendor==null)
+                return RedirectToAction("Create", "Vendors");
             return View(vendors.ToList());
         }
 
@@ -50,6 +55,7 @@ namespace OpenOrderFramework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,Identity,FoodCourtId")] Vendor vendor)
         {
+            vendor.Identity = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.Vendors.Add(vendor);
@@ -73,6 +79,8 @@ namespace OpenOrderFramework.Controllers
             {
                 return HttpNotFound();
             }
+
+            vendor.Identity = User.Identity.Name;
             ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
             return View(vendor);
         }
@@ -84,6 +92,8 @@ namespace OpenOrderFramework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,Identity,FoodCourtId")] Vendor vendor)
         {
+
+            vendor.Identity = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.Entry(vendor).State = EntityState.Modified;
