@@ -36,28 +36,40 @@ namespace OpenOrderFramework.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var orders = from o in db.Orders
-                        select o;
+                         select o;
 
-            if (!String.IsNullOrEmpty(searchString))
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    orders = orders.Where(s => s.FirstName.ToUpper().Contains(searchString.ToUpper())
+            //                           || s.LastName.ToUpper().Contains(searchString.ToUpper()));
+            //}
+            //switch (sortOrder)
+            //{
+            //    case "name_desc":
+            //        orders = orders.OrderByDescending(s => s.FirstName);
+            //        break;
+            //    case "Price":
+            //        orders = orders.OrderBy(s => s.Total);
+            //        break;
+            //    case "price_desc":
+            //        orders = orders.OrderByDescending(s => s.Total);
+            //        break;
+            //    default:  // Name ascending 
+            //        orders = orders.OrderBy(s => s.FirstName);
+            //        break;
+            //}
+
+            // Employee
+            if (!User.IsInRole("Vendor"))
             {
-                orders = orders.Where(s => s.FirstName.ToUpper().Contains(searchString.ToUpper())
-                                       || s.LastName.ToUpper().Contains(searchString.ToUpper()));
+                orders = db.Orders.Where(x => x.Username.Equals(User.Identity.Name)).OrderByDescending(o => o.OrderDate);
             }
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    orders = orders.OrderByDescending(s => s.FirstName);
-                    break;
-                case "Price":
-                    orders = orders.OrderBy(s => s.Total);
-                    break;
-                case "price_desc":
-                    orders = orders.OrderByDescending(s => s.Total);
-                    break;
-                default:  // Name ascending 
-                    orders = orders.OrderBy(s => s.FirstName);
-                    break;
-            }
+                // Vendor
+            //else
+            //{
+            //    //orders = db.Orders.Where(x => x.Username.Equals(User.Identity.Name)).OrderByDescending(o => o.OrderDate);
+            //}
+
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
@@ -74,7 +86,7 @@ namespace OpenOrderFramework.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = await db.Orders.FindAsync(id);
-            var orderDetails = db.OrderDetails.Where(x => x.OrderId == id );
+            var orderDetails = db.OrderDetails.Where(x => x.OrderId == id);
 
             order.OrderDetails = await orderDetails.ToListAsync();
             if (order == null)
