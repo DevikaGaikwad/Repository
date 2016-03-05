@@ -64,11 +64,23 @@ namespace OpenOrderFramework.Controllers
             {
                 orders = db.Orders.Where(x => x.Username.Equals(User.Identity.Name)).OrderByDescending(o => o.OrderDate);
             }
-                // Vendor
-            //else
-            //{
-            //    //orders = db.Orders.Where(x => x.Username.Equals(User.Identity.Name)).OrderByDescending(o => o.OrderDate);
-            //}
+            // Vendor
+            else
+            {
+                var vendorUsername = User.Identity.Name;
+                var vendorId = db.Vendors
+                                .Where(x => x.Identity.Equals(vendorUsername, StringComparison.InvariantCultureIgnoreCase))
+                                .Select(x => x.ID)
+                                .FirstOrDefault();
+
+                var orderIds = db.Items
+                                .Where(x => x.VendorId == vendorId)
+                                .Join(db.OrderDetails, itemId => itemId.ID, orderItemId => orderItemId.ItemId, (x, y) => y.OrderId);
+
+                orders = db.Orders
+                            .Where(x => orderIds.Contains(x.OrderId))
+                            .OrderByDescending(o => o.OrderDate);
+            }
 
 
             int pageSize = 3;

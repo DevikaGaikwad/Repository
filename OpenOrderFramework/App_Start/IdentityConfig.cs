@@ -182,7 +182,7 @@ namespace OpenOrderFramework.Models
         }
 
         // Use NuGet to install SendGrid (Basic C# client lib) 
-        private async Task configSendGridasync(IdentityMessage message)
+        private static async Task configSendGridasync(IdentityMessage message)
         {
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
