@@ -521,7 +521,7 @@
     <!-- /grid-->
 </div>
 
-<h2>Order some good food.</h2>
+@*<h2>Order some good food.</h2>
 @if (Request.IsAuthenticated)
 {
     <p>
@@ -583,7 +583,7 @@
                     Add
                     to cart
                 </a>
-                <!--@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.ID }, new { htmlAttributes = new { @data_toggle = "modal", @data_target = "#myModal" } })--> |
+                @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = item.ID }, new { htmlAttributes = new { @data_toggle = "modal", @data_target = "#myModal" } }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ID })
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
@@ -594,7 +594,7 @@
         </tr>
     }
 </table>
-<br />
+<br />*@
 @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageN
                     </td>
                 </tr>
