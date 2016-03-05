@@ -7,13 +7,13 @@ namespace OpenOrderFramework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ItemDays : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ItemDays));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603042302533_ItemDays"; }
+            get { return "201603050018379_Initial"; }
         }
         
         string IMigrationMetadata.Source
