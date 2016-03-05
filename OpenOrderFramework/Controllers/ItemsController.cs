@@ -109,7 +109,9 @@ namespace OpenOrderFramework.Controllers
     .Where(x => x.Value.Errors.Count > 0)
     .Select(x => new { x.Key, x.Value.Errors })
     .ToArray();
+            var vendor = db.Vendors.Where(x => x.Identity.Equals(User.Identity.Name)).FirstOrDefault();
 
+            item.VendorId = vendor.ID;
             if (ModelState.IsValid)
             {
                 try

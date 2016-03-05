@@ -88,6 +88,8 @@ namespace OpenOrderFramework.Models
         [Required(ErrorMessage = "Enter Preparation Time in minutes")]
         public int PreparationTime { get; set; }
 
+        [DisplayName("Vendor")]
+        public int VendorId { get; set; }
         public virtual Vendor Vendor { get; set; }
 
         [DisplayName("Category")]
