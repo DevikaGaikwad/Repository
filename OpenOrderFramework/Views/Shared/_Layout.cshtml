@@ -43,6 +43,7 @@
                     }
 
                     <li>@Html.ActionLink("Food", "Index", "Items")</li>
+                    <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                     @if (Request.IsAuthenticated && User.IsInRole("Vendor"))
                     {
 
