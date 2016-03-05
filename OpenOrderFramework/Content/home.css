@@ -7,6 +7,40 @@
     left: 0px;
     z-index: 0;
 }
+
+html, body, .container-table {
+    height: 100%;
+}
+.container-table {
+    display: table;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+    margin-top: 15%;
+}
+
+h4.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 20%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dropdownlist{
+    margin-left:10%;
+}
+
+.loginbtn button[type="button"] {
+    margin-left:15%;
+    
+}
+
 .cb-slideshow:after {
     content: '';
     background: transparent url(../images/pattern.png) repeat top left;
