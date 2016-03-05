@@ -8,109 +8,114 @@ using System.Web;
 using System.Web.Mvc;
 using OpenOrderFramework.Models;
 
-namespace OpenOrderFramework.Views
+namespace OpenOrderFramework.Controllers
 {
-    public class EmployeesController : Controller
+    public class VendorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Employees
+        // GET: Vendors
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var vendors = db.Vendors.Include(v => v.FoodCourt);
+            return View(vendors.ToList());
         }
 
-        // GET: Employees/Details/5
+        // GET: Vendors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(vendor);
         }
 
-        // GET: Employees/Create
+        // GET: Vendors/Create
         public ActionResult Create()
         {
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name");
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Vendors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,ProfilePicture,ProfilePictureUrl")] Employee employee)
+        public ActionResult Create([Bind(Include = "ID,Name,Identity,FoodCourtId")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
+                db.Vendors.Add(vendor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
+            return View(vendor);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Vendors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
+            return View(vendor);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Vendors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,ProfilePicture,ProfilePictureUrl")] Employee employee)
+        public ActionResult Edit([Bind(Include = "ID,Name,Identity,FoodCourtId")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
+                db.Entry(vendor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(employee);
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
+            return View(vendor);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Vendors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(vendor);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Vendors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            Vendor vendor = db.Vendors.Find(id);
+            db.Vendors.Remove(vendor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
