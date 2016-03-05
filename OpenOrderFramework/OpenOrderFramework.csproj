@@ -239,6 +239,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CuisinesController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\FoodCourtsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -248,17 +249,14 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
+    <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603042352514_Initial.cs" />
-    <Compile Include="Migrations\201603042352514_Initial.Designer.cs">
-      <DependentUpon>201603042352514_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603042302533_ItemDays.cs" />
-    <Compile Include="Migrations\201603042302533_ItemDays.Designer.cs">
-      <DependentUpon>201603042302533_ItemDays.cs</DependentUpon>
+    <Compile Include="Migrations\201603050149136_Initial.cs" />
+    <Compile Include="Migrations\201603050149136_Initial.Designer.cs">
+      <DependentUpon>201603050149136_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -282,10 +280,9 @@
     <Compile Include="ViewModels\OrderDateGroup.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
-    <Compile Include="Views\EmployeesController.cs" />
-    <Compile Include="Views\VendorsController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Hackathon.sdf" />
     <Content Include="Content\BarChart.css" />
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
@@ -332,6 +329,26 @@
     <Content Include="Content\datepicker.less" />
     <Content Include="Content\bootstrap-social.less" />
     <Content Include="Content\bootstrap-social.scss" />
+    <Content Include="Views\Cuisines\Create.cshtml" />
+    <Content Include="Views\Cuisines\Delete.cshtml" />
+    <Content Include="Views\Cuisines\Details.cshtml" />
+    <Content Include="Views\Cuisines\Edit.cshtml" />
+    <Content Include="Views\Cuisines\Index.cshtml" />
+    <Content Include="Views\FoodCourts\Create.cshtml" />
+    <Content Include="Views\FoodCourts\Delete.cshtml" />
+    <Content Include="Views\FoodCourts\Details.cshtml" />
+    <Content Include="Views\FoodCourts\Edit.cshtml" />
+    <Content Include="Views\FoodCourts\Index.cshtml" />
+    <Content Include="Views\Vendors\Create.cshtml" />
+    <Content Include="Views\Vendors\Delete.cshtml" />
+    <Content Include="Views\Vendors\Details.cshtml" />
+    <Content Include="Views\Vendors\Edit.cshtml" />
+    <Content Include="Views\Vendors\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -469,14 +486,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603042352514_Initial.resx">
-      <DependentUpon>201603042352514_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603042302533_ItemDays.resx">
-      <DependentUpon>201603042302533_ItemDays.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603050149136_Initial.resx">
+      <DependentUpon>201603050149136_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

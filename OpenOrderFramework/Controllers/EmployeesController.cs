@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using OpenOrderFramework.Models;
 
-namespace OpenOrderFramework.Views
+namespace OpenOrderFramework.Controllers
 {
     public class EmployeesController : Controller
     {

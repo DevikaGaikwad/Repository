@@ -7,8 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OpenOrderFramework.Models;
+using Microsoft.AspNet.Identity;
 
-namespace OpenOrderFramework.Views
+namespace OpenOrderFramework.Controllers
 {
     public class VendorsController : Controller
     {
@@ -17,7 +18,12 @@ namespace OpenOrderFramework.Views
         // GET: Vendors
         public ActionResult Index()
         {
-            return View(db.Vendors.ToList());
+            var vendors = db.Vendors.Include(v => v.FoodCourt);
+            var vendor=db.Vendors.Where(x => x.Identity.Equals(User.Identity.Name)).FirstOrDefault();
+           
+            if(vendor==null)
+                return RedirectToAction("Create", "Vendors");
+            return View(vendors.ToList());
         }
 
         // GET: Vendors/Details/5
@@ -38,6 +44,7 @@ namespace OpenOrderFramework.Views
         // GET: Vendors/Create
         public ActionResult Create()
         {
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name");
             return View();
         }
 
@@ -46,8 +53,9 @@ namespace OpenOrderFramework.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Vendor vendor)
+        public ActionResult Create([Bind(Include = "ID,Name,Identity,FoodCourtId")] Vendor vendor)
         {
+            vendor.Identity = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.Vendors.Add(vendor);
@@ -55,6 +63,7 @@ namespace OpenOrderFramework.Views
                 return RedirectToAction("Index");
             }
 
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
             return View(vendor);
         }
 
@@ -70,6 +79,9 @@ namespace OpenOrderFramework.Views
             {
                 return HttpNotFound();
             }
+
+            vendor.Identity = User.Identity.Name;
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
             return View(vendor);
         }
 
@@ -78,14 +90,17 @@ namespace OpenOrderFramework.Views
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Vendor vendor)
+        public ActionResult Edit([Bind(Include = "ID,Name,Identity,FoodCourtId")] Vendor vendor)
         {
+
+            vendor.Identity = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.Entry(vendor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name", vendor.FoodCourtId);
             return View(vendor);
         }
 

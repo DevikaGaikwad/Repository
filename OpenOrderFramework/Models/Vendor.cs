@@ -22,5 +22,7 @@ namespace OpenOrderFramework.Models
         public int FoodCourtId { get; set; }
 
         public virtual FoodCourt FoodCourt { get; set; }
+
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

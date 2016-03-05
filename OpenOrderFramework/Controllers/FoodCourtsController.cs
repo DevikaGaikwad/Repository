@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using OpenOrderFramework.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace OpenOrderFramework.Controllers
 {
@@ -131,6 +132,16 @@ namespace OpenOrderFramework.Controllers
             db.FoodCourts.Remove(foodCourt);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public async Task<ActionResult> RenderImage(int id)
+        {
+            Item item = await db.Items.FindAsync(id);
+
+            byte[] photoBack = item.InternalImage;
+
+            return File(photoBack, "image/png");
         }
 
         protected override void Dispose(bool disposing)
