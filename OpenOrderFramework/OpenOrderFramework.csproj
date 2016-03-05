@@ -252,9 +252,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603042145225_Initial.cs" />
-    <Compile Include="Migrations\201603042145225_Initial.Designer.cs">
-      <DependentUpon>201603042145225_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603042352514_Initial.cs" />
+    <Compile Include="Migrations\201603042352514_Initial.Designer.cs">
+      <DependentUpon>201603042352514_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -282,7 +282,6 @@
     <Compile Include="Views\VendorsController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Hackathon.sdf" />
     <Content Include="Content\BarChart.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -456,10 +455,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603042145225_Initial.resx">
-      <DependentUpon>201603042145225_Initial.cs</DependentUpon>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603042352514_Initial.resx">
+      <DependentUpon>201603042352514_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

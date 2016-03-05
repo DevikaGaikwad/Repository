@@ -5,6 +5,8 @@ using OpenOrderFramework.Models;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,13 +20,10 @@ namespace OpenOrderFramework.Controllers
         ApplicationDbContext storeDB = new ApplicationDbContext();
         AppConfigurations appConfig = new AppConfigurations();
 
-        public List<String> CreditCardTypes { get { return appConfig.CreditCardType;} }
-
         //
         // GET: /Checkout/AddressAndPayment
         public ActionResult AddressAndPayment()
         {
-            ViewBag.CreditCardTypes = CreditCardTypes;
             var previousOrder = storeDB.Orders.FirstOrDefault(x => x.Username == User.Identity.Name);
 
             if (previousOrder != null)
@@ -38,12 +37,10 @@ namespace OpenOrderFramework.Controllers
         [HttpPost]
         public async Task<ActionResult> AddressAndPayment(FormCollection values)
         {
-            ViewBag.CreditCardTypes = CreditCardTypes;
-            string result =  values[9];
+            string result =  values[2];
             
             var order = new Order();
             TryUpdateModel(order);
-            order.CreditCard = result;
 
             try
             {
@@ -58,19 +55,9 @@ namespace OpenOrderFramework.Controllers
                         var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                         var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
                         var ctx = store.Context;
-                        var currentUser = manager.FindById(User.Identity.GetUserId());
-
-                        currentUser.Address = order.Address;
-                        currentUser.City = order.City;
-                        currentUser.Country = order.Country;
-                        currentUser.State = order.State;
-                        currentUser.Phone = order.Phone;
-                        currentUser.PostalCode = order.PostalCode;
+                        var currentUser = manager.FindById(User.Identity.GetUserId());                       
                         currentUser.FirstName = order.FirstName;
 
-                        //Save this back
-                        //http://stackoverflow.com/questions/20444022/updating-user-data-asp-net-identity
-                        //var result = await UserManager.UpdateAsync(currentUser);
                         await ctx.SaveChangesAsync();
 
                         await storeDB.SaveChangesAsync();
@@ -92,11 +79,23 @@ namespace OpenOrderFramework.Controllers
                         new { id = order.OrderId });
                 
             }
-            catch
+            catch (DbEntityValidationException dbEx)
             {
-                //Invalid - redisplay with errors
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
                 return View(order);
             }
+            //{
+            //    //Invalid - redisplay with errors
+            //    return View(order);
+            //}
         }
 
         //

@@ -35,46 +35,6 @@ namespace OpenOrderFramework.Models
         [StringLength(160)]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Address is required")]
-        [StringLength(70)]
-        public string Address { get; set; }
-
-        [Required(ErrorMessage = "City is required")]
-        [StringLength(40)]
-        public string City { get; set; }
-
-        [Required(ErrorMessage = "State is required")]
-        [StringLength(40)]
-        public string State { get; set; }
-
-        [Required(ErrorMessage = "Postal Code is required")]
-        [DisplayName("Postal Code")]
-        [StringLength(10)]
-        public string PostalCode { get; set; }
-
-        [Required(ErrorMessage = "Country is required")]
-        [StringLength(40)]
-        public string Country { get; set; }
-
-        [Required(ErrorMessage = "Phone is required")]
-        [StringLength(24)]
-        public string Phone { get; set; }
-
-        [Display(Name = "Experation Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime Experation { get; set; }
-
-        [Display(Name = "Credit Card")]
-        [NotMapped]
-        [Required]
-        [DataType(DataType.CreditCard)]
-        public String CreditCard { get; set; }
-
-        [Display(Name = "Credit Card Type")]
-        [NotMapped]
-        public String CcType { get; set; }
-
         public bool SaveInfo { get; set; }
 
 
@@ -90,29 +50,22 @@ namespace OpenOrderFramework.Models
         public List<OrderDetail> OrderDetails { get; set; }
 
         [Display(Name = "Pick Up Time")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{hh:MM}", ApplyFormatInEditMode = true)]
-        public DateTime PickUpTime { get; set; }
+        [StringLength(100)]
+        [DisplayFormat(DataFormatString = "{0:t}", ApplyFormatInEditMode = true)]
+        public string PickUpTime { get; set; }
 
         [Display(Name = "Rating")]
-        [Range(1, 5)]
+        [Range(0, 5)]
         public int Rating { get; set; }
-
-        [DisplayName("EmployeeId")]
-        public int EmployeeId { get; set; }
-        public virtual Employee Employee { get; set; }
-
 
         public string ToString(Order order)
         {
             StringBuilder bob = new StringBuilder();
 
             bob.Append("<p>Order Information for Order: " + order.OrderId + "<br>Placed at: " + order.OrderDate + "</p>").AppendLine();
-            bob.Append("<p>Name: " + order.FirstName + " " + order.LastName + "<br>");
-            bob.Append("Address: " + order.Address + " " + order.City + " " + order.State + " " + order.PostalCode + "<br>");
-            bob.Append("Contact: " + order.Email + "     " + order.Phone + "</p>");
-            bob.Append("<p>Charge: " + order.CreditCard + " " + order.Experation.ToString("dd-MM-yyyy") + "</p>");
-            bob.Append("<p>Credit Card Type: " + order.CcType + "</p>");
+            bob.Append("<p>Name: " + order.FirstName + " " + order.LastName + "<br>");            
+            bob.Append("Contact: " + order.Email + "</p>");
+            bob.Append("Pick up time: " + order.PickUpTime + "</p>");
 
             bob.Append("<br>").AppendLine();
             bob.Append("<Table>").AppendLine();

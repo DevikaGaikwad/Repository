@@ -484,11 +484,7 @@ namespace OpenOrderFramework.Controllers
             {
                 return Redirect(returnUrl);
             }
-            if(User.IsInRole("Vendor"))
-            {
-               // Vendor vendor = db.Vendors.Select(User.Identity.ToString());
-                return RedirectToAction("Index", "Vendors");
-            }
+           
             return RedirectToAction("Index", "Home");
         }
 
