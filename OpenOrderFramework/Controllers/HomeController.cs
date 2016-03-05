@@ -1,7 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using OpenOrderFramework.Models;
+using System.Web.Mvc;
 
 namespace OpenOrderFramework.Controllers {
     public class HomeController : Controller {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             if (User.IsInRole("Vendor"))
@@ -9,6 +12,7 @@ namespace OpenOrderFramework.Controllers {
                 // Vendor vendor = db.Vendors.Select(User.Identity.ToString());
                 return RedirectToAction("Index", "Vendors");
             }
+            ViewBag.FoodCourtId = new SelectList(db.FoodCourts, "ID", "Name");
             return View();
         }
 

@@ -4,6 +4,7 @@
     background-size: cover;
     padding: 0;
     margin: 0;
+    
 }
 
 .col-lg-6
@@ -17,8 +18,7 @@
     z-index: 99;
 }
 
-h2{
-    
+h2{   
    
     text-align: center;
     color: #FFFFFF;
@@ -36,7 +36,7 @@ h4.form-title
     color: #FFFFFF;
     margin-top: 20%;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
 }
 
 h4.form-fp
@@ -69,6 +69,8 @@ form
     width: 300px;
     margin: 0 auto;
     color: #FFFFFF;
+    align-self:flex-end;
+   align-content:flex-end;
 }
 
 form.login input[type="text"], form.login input[type="password"]

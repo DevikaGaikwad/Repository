@@ -287,6 +287,7 @@
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapsgp.css" />
     <Content Include="Content\card.css" />
     <Content Include="Content\component.css" />
     <Content Include="Content\datepicker.css" />
@@ -329,6 +330,8 @@
     <Content Include="Content\datepicker.less" />
     <Content Include="Content\bootstrap-social.less" />
     <Content Include="Content\bootstrap-social.scss" />
+    <Content Include="Scripts\docs.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Views\Cuisines\Create.cshtml" />
     <Content Include="Views\Cuisines\Delete.cshtml" />
     <Content Include="Views\Cuisines\Details.cshtml" />
